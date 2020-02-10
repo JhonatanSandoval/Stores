@@ -38,6 +38,12 @@ class StoresFragment : BaseFragment<FragmentStoresBinding>() {
         lifecycleScope.launch {
             for (event in viewModel.eventChannel) {
                 when (event) {
+                    is StoresViewModel.Event.ShowLoader -> {
+
+                    }
+                    is StoresViewModel.Event.LoadStores -> {
+
+                    }
                     is StoresViewModel.Event.SelectStore -> {
                         val action = StoresFragmentDirections.actionStoresFragmentToStoreDetailsFragment(event.storeId)
                         navController.navigate(action)
@@ -45,6 +51,8 @@ class StoresFragment : BaseFragment<FragmentStoresBinding>() {
                 }
             }
         }
+
+        viewModel.loadStoresFromNetwork()
     }
 
 }
