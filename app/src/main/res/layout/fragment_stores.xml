@@ -2,31 +2,33 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="pe.kreatec.stores.presentation.ux.stores.StoresViewModel"
+            />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ux.main.MainActivity"
         >
 
-        <fragment
-            android:id="@+id/mainNavigationFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.selectStore()}"
+            android:text="GO TO DETAILS"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_graph"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

@@ -113,12 +113,15 @@ dependencies {
     implementation(Deps.COIL)
 
     implementation(Deps.DAGGER)
+    implementation(Deps.NAVIGATION_FRAGMENT_KTX)
+    implementation(Deps.NAVIGATION_UI_KTX)
     kapt(Deps.DAGGER_COMPILER)
 
     implementation(Deps.ARCH_ROOM_RUNTIME)
     implementation(Deps.ARCH_ROOM_KTX)
     kapt(Deps.ARCH_ROOM_COMPILER)
 
+    implementation(Deps.WORKMANAGER)
     implementation(Deps.WORKER_INJECT)
     kapt(Deps.WORKER_INJECT_PROCESSOR)
     implementation(Deps.VIEWMODEL_INJECT)
@@ -142,3 +145,5 @@ tasks.register("incrementVersionCode") {
         VersionCode.incrementVersionCode(versionCodeAppName, minVersionCode)
     }
 }
+
+apply(plugin = "androidx.navigation.safeargs.kotlin")

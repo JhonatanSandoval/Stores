@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/storesFragment"
+    >
+
+    <fragment
+        android:id="@+id/storesFragment"
+        android:name="pe.kreatec.stores.presentation.ux.stores.StoresFragment"
+        android:label="StoresFragment"
+        tools:layout="@layout/fragment_stores"
+        >
+        <action
+            android:id="@+id/action_storesFragment_to_storeDetailsFragment"
+            app:destination="@id/storeDetailsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storeDetailsFragment"
+        android:name="pe.kreatec.stores.presentation.ux.details.StoreDetailsFragment"
+        android:label="StoreDetailsFragment"
+        tools:layout="@layout/fragment_store_details"
+        >
+        <action
+            android:id="@+id/action_storeDetailsFragment_to_storesFragment"
+            app:destination="@id/storesFragment"
+            />
+        <argument
+            android:name="storeId"
+            app:argType="integer"
+            android:defaultValue="-1"
+            />
+    </fragment>
+</navigation>
