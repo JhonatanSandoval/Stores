@@ -4,6 +4,7 @@ import com.vikingsen.inject.viewmodel.ViewModelInject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import pe.kreatec.stores.data.prefs.Prefs
 import pe.kreatec.stores.data.remote.util.ApiResponse
 import pe.kreatec.stores.domain.model.Store
 import pe.kreatec.stores.domain.usecase.StoreUseCase
@@ -13,20 +14,29 @@ import timber.log.Timber
 
 class StoresViewModel
 @ViewModelInject constructor(
-    private val storeUseCase: StoreUseCase
+    private val storeUseCase: StoreUseCase,
+    private val prefs: Prefs
 ) : BaseViewModel<StoresViewModel.Event>(), CoroutineScope by ioScope() {
 
-    fun loadStoresFromDb() = launch {
+    init {
+        if (prefs.isFirstTime) {
+            loadStoresFromNetwork(true)
+        } else {
+            loadStoresFromDb()
+        }
+    }
+
+    private fun loadStoresFromDb() = launch {
         storeUseCase.getStoresFromDb().collect {
             sendEvent(Event.LoadStores(it))
         }
     }
 
-    fun loadStoresFromNetwork() = launch {
-        when (val result = storeUseCase.getStoresFromNetwork()) {
+    fun loadStoresFromNetwork(save: Boolean = false) = launch {
+        when (val result = storeUseCase.getStoresFromNetwork(save)) {
             is ApiResponse.Success -> {
-                Timber.i("success called: ${result.items}")
-                sendEvent(Event.LoadStores(result.items))
+                if (save) prefs.isFirstTime = false
+                loadStoresFromDb()
             }
             is ApiResponse.Error -> {
                 Timber.e("error called: ${result.errorMessage}")
@@ -37,8 +47,8 @@ class StoresViewModel
         }
     }
 
-    fun selectStore() {
-        sendEvent(Event.SelectStore(123))
+    fun selectStore(storeId: Int) {
+        sendEvent(Event.SelectStore(storeId))
     }
 
     sealed class Event {

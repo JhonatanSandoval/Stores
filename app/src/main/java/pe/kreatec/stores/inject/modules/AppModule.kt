@@ -2,6 +2,8 @@ package pe.kreatec.stores.inject.modules
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,8 @@ class AppModule(private val application: Application) {
             .fallbackToDestructiveMigration()
             .build()
 
+    @Provides
+    fun provideSharedPreferences(application: Application): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(application)
+    }
 }

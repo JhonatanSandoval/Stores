@@ -13,7 +13,7 @@ class StoreUseCase
     private val storeRepository: StoreRepository
 ) {
 
-    suspend fun getStoresFromNetwork(): ApiResponse<List<Store>> = storeRepository.getStoresFromNetwork()
+    suspend fun getStoresFromNetwork(save: Boolean): ApiResponse<List<Store>?> = storeRepository.getStoresFromNetwork(save)
 
     suspend fun getStoresFromDb(): Flow<List<Store>> = storeRepository.getStoreFromDb()
 

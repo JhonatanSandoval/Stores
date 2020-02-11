@@ -98,18 +98,21 @@ dependencies {
 
     implementation(Deps.ANDROIDX_APPCOMPAT)
     implementation(Deps.ANDROIDX_RECYCLERVIEW)
+    implementation(Deps.ANDROIDX_PREFERENCE)
     implementation(Deps.ANDROID_MATERIAL)
     implementation(Deps.ANDROIDX_ANNOTATIONS)
     implementation(Deps.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(Deps.ANDROIDX_CORE)
     implementation(Deps.ANDROIDX_ACTIVITY_KTX)
     implementation(Deps.ANDROIDX_FRAGMENT_KTX)
+    implementation(Deps.ANDROIDX_SWIPEREFRESHLAYOUT)
 
     implementation(Deps.KOTLIN_STD_LIB)
     implementation(Deps.KOTLIN_SERIALIZATION)
     implementation(Deps.COROUTINES_CORE)
     implementation(Deps.COROUTINES_ANDROID)
     implementation(Deps.TIMBER)
+    implementation(Deps.EXTRAS_DELEGATES)
     implementation(Deps.COIL)
 
     implementation(Deps.DAGGER)
