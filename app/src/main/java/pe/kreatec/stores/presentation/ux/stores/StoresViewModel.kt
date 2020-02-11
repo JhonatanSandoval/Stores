@@ -26,13 +26,16 @@ class StoresViewModel
         }
     }
 
-    private fun loadStoresFromDb() = launch {
+    fun loadStoresFromDb() = launch {
+        Timber.i("loading from database")
         storeUseCase.getStoresFromDb().collect {
             sendEvent(Event.LoadStores(it))
         }
     }
 
     fun loadStoresFromNetwork(save: Boolean = false) = launch {
+        Timber.i("loading from network | saving? $save")
+        sendEvent(Event.ShowLoader(true))
         when (val result = storeUseCase.getStoresFromNetwork(save)) {
             is ApiResponse.Success -> {
                 if (save) prefs.isFirstTime = false
@@ -45,6 +48,7 @@ class StoresViewModel
                 Timber.e("exception called: ${result.exception}")
             }
         }
+        sendEvent(Event.ShowLoader(false))
     }
 
     fun selectStore(storeId: Int) {
@@ -52,7 +56,7 @@ class StoresViewModel
     }
 
     sealed class Event {
-        data class ShowLoader(val loader: Boolean) : Event()
+        data class ShowLoader(val show: Boolean) : Event()
         data class LoadStores(val stores: List<Store>?) : Event()
         data class SelectStore(val storeId: Int) : Event()
     }

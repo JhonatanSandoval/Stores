@@ -1,5 +1,7 @@
 package pe.kreatec.stores.domain.model
 
+import pe.kreatec.stores.data.local.entity.StoreEntity
+
 data class Store(
     val storeId: Int = 0,
     val name: String = "",
@@ -9,3 +11,6 @@ data class Store(
     val storeLogoUrl: String = "",
     val phoneNumber: String = ""
 )
+
+fun Store.transform(): StoreEntity =
+    StoreEntity(storeId, name, latitude, longitude, address, storeLogoUrl, phoneNumber)

@@ -123,6 +123,7 @@ dependencies {
     implementation(Deps.ARCH_ROOM_RUNTIME)
     implementation(Deps.ARCH_ROOM_KTX)
     kapt(Deps.ARCH_ROOM_COMPILER)
+    debugImplementation(Deps.DATABASE_DEBUGGER)
 
     implementation(Deps.WORKMANAGER)
     implementation(Deps.WORKER_INJECT)

@@ -26,7 +26,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:padding="10dp"
             >
 
@@ -42,21 +42,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:loadImageFromUrl="@{store.storeLogoUrl}"
                 tools:srcCompat="@tools:sample/avatars"
-                />
-
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@{store.name}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                tools:text="Starbucks"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

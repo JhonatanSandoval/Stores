@@ -54,7 +54,7 @@ class StoresFragment : BaseFragment<FragmentStoresBinding>() {
             for (event in viewModel.eventChannel) {
                 when (event) {
                     is StoresViewModel.Event.ShowLoader -> {
-
+                        if (!event.show) binding.swipeRefresh.isRefreshing = false
                     }
                     is StoresViewModel.Event.LoadStores -> event.stores?.let { adapter.stores = it }
                     is StoresViewModel.Event.SelectStore -> {
@@ -65,7 +65,6 @@ class StoresFragment : BaseFragment<FragmentStoresBinding>() {
             }
         }
 
-        viewModel.loadStoresFromNetwork()
     }
 
 }

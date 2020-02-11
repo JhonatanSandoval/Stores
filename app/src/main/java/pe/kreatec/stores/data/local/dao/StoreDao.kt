@@ -24,4 +24,7 @@ interface StoreDao {
     @Delete
     fun delete(store: StoreEntity)
 
+    @Query("DELETE FROM ${StoreEntity.TABLE_NAME}")
+    fun deleteAll()
+
 }

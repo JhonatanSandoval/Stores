@@ -3,6 +3,7 @@ package pe.kreatec.stores
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import com.vikingsen.inject.worker.WorkerFactory
+import pe.kreatec.stores.data.prefs.PrefsManager
 import pe.kreatec.stores.inject.Injector
 import pe.kreatec.stores.inject.modules.AppModule
 import timber.log.Timber
@@ -14,6 +15,7 @@ class App : MultiDexApplication(), Configuration.Provider {
 
     init {
         Injector.init(AppModule(this))
+        PrefsManager.init(this)
     }
 
     override fun onCreate() {
