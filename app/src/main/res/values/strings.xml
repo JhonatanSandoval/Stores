@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stores</string>
+    <string name="error_network_title">An network error happened !</string>
+    <string name="error_network_content">There was an error processing this request. Swipe down to retry.</string>
 </resources>

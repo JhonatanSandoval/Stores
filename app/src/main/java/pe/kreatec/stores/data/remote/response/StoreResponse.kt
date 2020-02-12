@@ -12,17 +12,18 @@ data class StoreResponse(
     val name: String,
     val latitude: Double,
     val longitude: Double,
-    val address: String,
-    val storeLogoURL: String,
-    val phone: String
+    val address: String? = "",
+    val storeLogoURL: String? = "",
+    val phone: String? = "",
+    val city: String? = ""
 )
 
 fun StoreResponse.transform(): Store =
-    Store(storeId, name, latitude, longitude, address, storeLogoURL, phone)
+    Store(storeId, name, latitude, longitude, address, storeLogoURL, phone, city)
 
 fun List<StoreResponse>.transformList(): List<Store> = map { it.transform() }
 
 fun StoreResponse.transformToEntity(): StoreEntity =
-    StoreEntity(storeId, name, latitude, longitude, address, storeLogoURL, phone)
+    StoreEntity(storeId, name, latitude, longitude, address, storeLogoURL, phone, city)
 
 fun List<StoreResponse>.transform(): List<StoreEntity> = map { it.transformToEntity() }

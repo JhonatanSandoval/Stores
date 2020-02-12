@@ -33,6 +33,7 @@ object Deps {
     private const val DAGGER_VERSION = "2.25.2"
     const val DAGGER = "com.google.dagger:dagger:$DAGGER_VERSION"
     const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    const val DATABASE_DEBUGGER = "com.amitshekhar.android:debug-db:1.0.6"
 
     const val KOTLIN_STD_LIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
     const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.13.0"

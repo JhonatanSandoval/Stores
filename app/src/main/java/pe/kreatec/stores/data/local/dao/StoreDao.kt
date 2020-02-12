@@ -27,4 +27,7 @@ interface StoreDao {
     @Query("DELETE FROM ${StoreEntity.TABLE_NAME}")
     fun deleteAll()
 
+    @Query("SELECT * FROM ${StoreEntity.TABLE_NAME} WHERE storeId = :storeId LIMIT 1")
+    fun get(storeId: Int) : Flow<StoreEntity>
+
 }

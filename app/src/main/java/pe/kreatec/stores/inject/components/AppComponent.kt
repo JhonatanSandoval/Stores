@@ -6,6 +6,7 @@ import pe.kreatec.stores.App
 import pe.kreatec.stores.inject.modules.AppModule
 import pe.kreatec.stores.inject.modules.NetworkModule
 import pe.kreatec.stores.inject.modules.RepositoryModule
+import pe.kreatec.stores.presentation.ux.MainActivity
 import pe.kreatec.stores.presentation.ux.details.StoreDetailsFragment
 import pe.kreatec.stores.presentation.ux.stores.StoresFragment
 import javax.inject.Singleton
@@ -14,6 +15,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, NetworkModule::class, RepositoryModule::class])
 interface AppComponent {
     fun inject(app: App)
+    fun inject(activity: MainActivity)
     fun inject(fragment: StoresFragment)
     fun inject(fragment: StoreDetailsFragment)
 

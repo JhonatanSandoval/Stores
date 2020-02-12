@@ -28,4 +28,5 @@ class StoreUseCase
 
     suspend fun getStoresFromDb(): Flow<List<Store>> = storeRepository.getStoreFromDb()
 
+    suspend fun getStore(storeId: Int) : Flow<Store> = storeRepository.getStore(storeId)
 }

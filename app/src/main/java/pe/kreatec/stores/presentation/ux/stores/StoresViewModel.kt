@@ -8,6 +8,7 @@ import pe.kreatec.stores.data.prefs.Prefs
 import pe.kreatec.stores.data.remote.util.ApiResponse
 import pe.kreatec.stores.domain.model.Store
 import pe.kreatec.stores.domain.usecase.StoreUseCase
+import pe.kreatec.stores.presentation.util.NetworkUtil
 import pe.kreatec.stores.presentation.util.ui.scope.ioScope
 import pe.kreatec.stores.presentation.util.ui.viewmodel.BaseViewModel
 import timber.log.Timber
@@ -15,7 +16,8 @@ import timber.log.Timber
 class StoresViewModel
 @ViewModelInject constructor(
     private val storeUseCase: StoreUseCase,
-    private val prefs: Prefs
+    private val prefs: Prefs,
+    private val networkUtil: NetworkUtil
 ) : BaseViewModel<StoresViewModel.Event>(), CoroutineScope by ioScope() {
 
     init {
@@ -41,12 +43,8 @@ class StoresViewModel
                 if (save) prefs.isFirstTime = false
                 loadStoresFromDb()
             }
-            is ApiResponse.Error -> {
-                Timber.e("error called: ${result.errorMessage}")
-            }
-            is ApiResponse.Exception -> {
-                Timber.e("exception called: ${result.exception}")
-            }
+            is ApiResponse.Error -> sendEvent(Event.ShowErrorNetwork)
+            is ApiResponse.Exception -> sendEvent(Event.ShowErrorNetwork)
         }
         sendEvent(Event.ShowLoader(false))
     }
@@ -59,6 +57,7 @@ class StoresViewModel
         data class ShowLoader(val show: Boolean) : Event()
         data class LoadStores(val stores: List<Store>?) : Event()
         data class SelectStore(val storeId: Int) : Event()
+        object ShowErrorNetwork : Event()
     }
 
 }

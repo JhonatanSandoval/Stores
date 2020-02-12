@@ -14,4 +14,6 @@ interface StoreRepository {
 
     suspend fun saveStore(store: Store)
 
+    suspend fun getStore(storeId: Int): Flow<Store>
+
 }

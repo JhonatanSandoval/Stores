@@ -13,7 +13,7 @@ data class StoreEntity(
     val storeId: Int = 0,
 
     @ColumnInfo
-    val name: String = "",
+    val name: String? = "",
 
     @ColumnInfo
     val latitude: Double = 0.0,
@@ -22,13 +22,16 @@ data class StoreEntity(
     val longitude: Double = 0.0,
 
     @ColumnInfo
-    val address: String = "",
+    val address: String? = "",
 
     @ColumnInfo
-    val storeLogoUrl: String = "",
+    val storeLogoUrl: String? = "",
 
     @ColumnInfo
-    val phoneNumber: String = ""
+    val phoneNumber: String? = "",
+
+    @ColumnInfo
+    val city: String? = ""
 
 ) {
     companion object {
@@ -37,6 +40,6 @@ data class StoreEntity(
 }
 
 fun StoreEntity.transform(): Store =
-    Store(storeId, name, latitude, longitude, address, storeLogoUrl, phoneNumber)
+    Store(storeId, name, latitude, longitude, address, storeLogoUrl, phoneNumber, city)
 
 fun List<StoreEntity>.transformList(): List<Store> = map { it.transform() }

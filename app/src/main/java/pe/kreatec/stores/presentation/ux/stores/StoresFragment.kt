@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -53,18 +54,30 @@ class StoresFragment : BaseFragment<FragmentStoresBinding>() {
         lifecycleScope.launch {
             for (event in viewModel.eventChannel) {
                 when (event) {
-                    is StoresViewModel.Event.ShowLoader -> {
-                        if (!event.show) binding.swipeRefresh.isRefreshing = false
-                    }
+                    is StoresViewModel.Event.ShowLoader -> binding.swipeRefresh.isRefreshing = event.show
                     is StoresViewModel.Event.LoadStores -> event.stores?.let { adapter.stores = it }
                     is StoresViewModel.Event.SelectStore -> {
                         val action = StoresFragmentDirections.actionStoresFragmentToStoreDetailsFragment(event.storeId)
                         navController.navigate(action)
                     }
+                    is StoresViewModel.Event.ShowErrorNetwork -> {
+                        context?.let {
+                            AlertDialog.Builder(it).apply {
+                                setTitle(getString(R.string.error_network_title))
+                                setMessage(getString(R.string.error_network_content))
+                                setPositiveButton(getString(android.R.string.ok), null)
+                            }.show()
+                        }
+                    }
                 }
             }
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.title = getString(R.string.app_name)
     }
 
 }

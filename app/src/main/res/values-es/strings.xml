@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tiendas</string>
+    <string name="error_network_title">Ha ocurrido un error de red</string>
+    <string name="error_network_content">Se producido un error al procesar la consulta. Desliza hacia abajo para reintentar.</string>
+</resources>

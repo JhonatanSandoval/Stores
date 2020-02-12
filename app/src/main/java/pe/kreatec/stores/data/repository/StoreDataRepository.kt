@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import pe.kreatec.stores.data.local.AppDatabase
+import pe.kreatec.stores.data.local.entity.transform
 import pe.kreatec.stores.data.local.entity.transformList
 import pe.kreatec.stores.data.remote.Api
 import pe.kreatec.stores.data.remote.response.transform
@@ -44,5 +45,9 @@ class StoreDataRepository
 
     override suspend fun getStoreFromDb(): Flow<List<Store>> = flow {
         storeDao.get().collect { emit(it.transformList()) }
+    }
+
+    override suspend fun getStore(storeId: Int): Flow<Store> = flow {
+        storeDao.get(storeId).collect { emit(it.transform()) }
     }
 }

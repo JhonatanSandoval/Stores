@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import com.vikingsen.inject.viewmodel.savedstate.SavedStateViewModelFactory
 import pe.kreatec.stores.R
 import pe.kreatec.stores.databinding.ActivityMainBinding
+import pe.kreatec.stores.inject.Injector
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +20,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    init {
+        Injector.get().inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        viewModel.scheduleSyncWorker()
     }
 
     override fun onSupportNavigateUp(): Boolean = navController.navigateUp()

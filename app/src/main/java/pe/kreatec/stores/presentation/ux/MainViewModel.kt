@@ -9,9 +9,7 @@ class MainViewModel
     private val workScheduler: WorkScheduler
 ) : BaseViewModel<MainViewModel.Event>() {
 
-    init {
-        workScheduler.scheduleSyncWorkerRepeating()
-    }
+    fun scheduleSyncWorker() = workScheduler.scheduleSyncWorkerRepeating()
 
     sealed class Event {}
 
